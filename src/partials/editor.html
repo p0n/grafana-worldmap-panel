@@ -210,3 +210,32 @@
     </gf-form-switch>
   </div>
 </div>
+
+<div class="editor-row">
+  <div class="section gf-form-group">
+    <h5 class="section-heading">Drilldown / detail link</h5>
+    <div class="section">
+      <div class="gf-form max-width-25">
+        <span class="gf-form-label width-7">Type</span>
+        <div class="gf-form-select-wrapper gf-form--grow">
+          <select class="gf-form-input" ng-model="ctrl.panel.link.type" ng-options="t for t in ['', 'dashboard', 'absolute']"></select>
+        </div>
+      </div>
+      <div class="gf-form max-width-25">
+        <span class="gf-form-label width-7" ng-show="ctrl.panel.link.type === 'dashboard'">Dashboard</span>
+        <input ng-show="ctrl.panel.link.type === 'dashboard'" type="text" ng-model="ctrl.panel.link.dashboard" class="gf-form-input max-width-14">
+        <span class="gf-form-label width-7" ng-show="ctrl.panel.link.type === 'absolute'">Url</span>
+        <input ng-show="ctrl.panel.link.type === 'absolute'" type="text" ng-model="ctrl.panel.link.url" class="gf-form-input max-width-14">
+      </div>
+    </div>
+    <div class="section" ng-show="ctrl.panel.link.type !== ''">
+      <div class="gf-form max-width-25">
+        <span class="gf-form-label width-10">Key Name</span>
+        <input type="text" ng-model="ctrl.panel.link.keyName" class="gf-form-input width-10">
+      </div>
+      <gf-form-switch class="gf-form" label-class="width-10" label="Include time range" checked="ctrl.panel.link.keepTime"></gf-form-switch>
+      <gf-form-switch class="gf-form" label-class="width-10" label="Include variables" checked="ctrl.panel.link.includeVars"></gf-form-switch>
+      <gf-form-switch class="gf-form" label-class="width-10" label="Open in new tab" checked="ctrl.panel.link.targetBlank"></gf-form-switch>
+    </div>
+  </div>
+</div>
