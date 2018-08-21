@@ -116,7 +116,7 @@ export default class WorldMap {
           }
           const info = this.ctrl.linkSrv.getPanelLinkAnchorInfo(this.ctrl.panel.link, this.ctrl.panel.scopedVars);
           window.open(
-            `${info.href}&${this.ctrl.panel.link.keyName}=${dataPoint.locationName}`, //FIXME: encode params
+            `${info.href}&${this.ctrl.panel.link.keyName}=${dataPoint.locationName}`,
             this.ctrl.panel.link.targetBlank ? '_blank' : '_self'
           );
         });
@@ -155,7 +155,7 @@ export default class WorldMap {
 
   createPopup(circle, locationName, value) {
     const unit = value && value === 1 ? this.ctrl.panel.unitSingular : this.ctrl.panel.unitPlural;
-    const label = (locationName + ': ' + value + ' ' + (unit || '')).trim();
+    const label = this.ctrl.panel.hideTooltipValues ? locationName : (locationName + ': ' + value + ' ' + (unit || '')).trim();
     circle.bindPopup(label, {'offset': window.L.point(0, -2), 'className': 'worldmap-popup', 'closeButton': this.ctrl.panel.stickyLabels});
 
     circle.on('mouseover', function onMouseOver(evt) {

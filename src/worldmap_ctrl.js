@@ -29,6 +29,7 @@ const panelDefaults = {
   hideEmpty: false,
   hideZero: false,
   stickyLabels: false,
+  hideTooltipValues: false,
   tableQueryOptions: {
     queryType: 'geohash',
     geohashField: 'geohash',
@@ -218,6 +219,11 @@ export default class WorldmapCtrl extends MetricsPanelCtrl {
   }
 
   toggleStickyLabels() {
+    this.map.clearCircles();
+    this.render();
+  }
+
+  toggleTooltipValues() {
     this.map.clearCircles();
     this.render();
   }
