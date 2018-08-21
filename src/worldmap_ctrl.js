@@ -35,8 +35,10 @@ const panelDefaults = {
     latitudeField: 'latitude',
     longitudeField: 'longitude',
     metricField: 'metric'
+  },
+  link: {
+    type: ''
   }
-
 };
 
 const mapCenters = {
@@ -53,9 +55,11 @@ export default class WorldmapCtrl extends MetricsPanelCtrl {
     super($scope, $injector);
 
     this.setMapProvider(contextSrv);
-    _.defaults(this.panel, panelDefaults);
+    _.defaultsDeep(this.panel, panelDefaults);
 
     this.dataFormatter = new DataFormatter(this, kbn);
+
+    this.linkSrv = $injector.get('linkSrv');
 
     this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
     this.events.on('data-received', this.onDataReceived.bind(this));

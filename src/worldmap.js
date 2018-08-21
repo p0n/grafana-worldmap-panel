@@ -110,6 +110,16 @@ export default class WorldMap {
           fillOpacity: 0.5,
           location: dataPoint.key,
         });
+        circle.on('click', (e) => {
+          if (this.ctrl.panel.link.type === '') {
+            return;
+          }
+          const info = this.ctrl.linkSrv.getPanelLinkAnchorInfo(this.ctrl.panel.link, this.ctrl.panel.scopedVars);
+          window.open(
+            `${info.href}&${this.ctrl.panel.link.keyName}=${dataPoint.locationName}`, //FIXME: encode params
+            this.ctrl.panel.link.targetBlank ? '_blank' : '_self'
+          );
+        });
         circle.unbindPopup();
         this.createPopup(circle, dataPoint.locationName, dataPoint.valueRounded);
       }
